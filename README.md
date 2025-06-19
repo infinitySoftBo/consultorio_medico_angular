@@ -83,3 +83,7 @@ los datos capturados en los formularios.
 ### Datos de prueba
 
 Al iniciar la aplicación se precargan algunos pacientes, citas y elementos de inventario. Estos datos de ejemplo permiten observar de inmediato las tablas de cada módulo y los indicadores del apartado de reportes.
+
+### Selección rápida de pacientes
+
+Los formularios de prescripciones, historia clínica, agenda y pagos utilizan un componente reutilizable para escoger pacientes existentes. El `PatientSelectorComponent` muestra un campo con autocompletado basado en Angular Material y evita escribir los datos de cada paciente manualmente. Si no hay pacientes registrados aparece un mensaje solicitando registrar uno nuevo.

@@ -11,7 +11,7 @@ import { DataService, Patient } from '../../services/data.service';
   styleUrl: './patient-management.component.css'
 })
 export class PatientManagementComponent {
-  newPatient: Patient = { name: '', age: 0, phone: '', email: '' };
+  newPatient: Patient = { id: '', name: '', age: 0, phone: '', email: '' };
   editingIndex: number | null = null;
 
   constructor(public data: DataService) {}
@@ -26,13 +26,13 @@ export class PatientManagementComponent {
     }
 
     if (this.editingIndex === null) {
-      this.data.patients.push({ ...this.newPatient });
+    this.data.patients.push({ ...this.newPatient });
     } else {
       this.data.patients[this.editingIndex] = { ...this.newPatient };
       this.editingIndex = null;
     }
 
-    this.newPatient = { name: '', age: 0, phone: '', email: '' };
+    this.newPatient = { id: '', name: '', age: 0, phone: '', email: '' };
   }
 
   editPatient(i: number) {
@@ -42,6 +42,6 @@ export class PatientManagementComponent {
 
   cancelEdit() {
     this.editingIndex = null;
-    this.newPatient = { name: '', age: 0, phone: '', email: '' };
+    this.newPatient = { id: '', name: '', age: 0, phone: '', email: '' };
   }
 }

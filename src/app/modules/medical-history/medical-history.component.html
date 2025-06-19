@@ -1,13 +1,7 @@
 <h2>Historia Clínica</h2>
 
 <form (ngSubmit)="addEntry()" class="form">
-  <input
-    type="text"
-    name="patient"
-    placeholder="Paciente"
-    [(ngModel)]="newEntry.patient"
-    required
-  />
+  <app-patient-selector (selected)="selectedPatient = $event"></app-patient-selector>
   <input
     type="text"
     name="notes"

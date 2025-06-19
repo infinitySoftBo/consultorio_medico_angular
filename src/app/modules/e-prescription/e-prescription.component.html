@@ -1,13 +1,7 @@
 <h2>Prescripción Médica</h2>
 
 <form (ngSubmit)="addPrescription()" class="form">
-  <input
-    type="text"
-    name="patient"
-    placeholder="Paciente"
-    [(ngModel)]="newPrescription.patient"
-    required
-  />
+  <app-patient-selector (selected)="selectedPatient = $event"></app-patient-selector>
   <input
     type="text"
     name="medication"
