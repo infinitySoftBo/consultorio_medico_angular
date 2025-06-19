@@ -27,7 +27,8 @@
     placeholder="Email"
     [(ngModel)]="newPatient.email"
   />
-  <button type="submit" class="primary">Agregar</button>
+  <button type="submit" class="primary">{{ editingIndex !== null ? 'Guardar' : 'Agregar' }}</button>
+  <button *ngIf="editingIndex !== null" type="button" (click)="cancelEdit()">Cancelar</button>
 </form>
 
 <table class="list" *ngIf="patients.length">
@@ -46,7 +47,10 @@
       <td>{{ p.age }}</td>
       <td>{{ p.phone }}</td>
       <td>{{ p.email }}</td>
-      <td><button (click)="patients.splice(i,1)">Eliminar</button></td>
+      <td>
+        <button (click)="editPatient(i)">Editar</button>
+        <button (click)="patients.splice(i,1)">Eliminar</button>
+      </td>
     </tr>
   </tbody>
 </table>
