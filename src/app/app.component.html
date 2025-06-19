@@ -1,8 +1,9 @@
 <header class="header">
-  <a routerLink="/login" class="login-link">Login</a>
+  <a *ngIf="!auth.isLoggedIn" routerLink="/login" class="login-link">Login</a>
+  <a *ngIf="auth.isLoggedIn" (click)="logout()" class="login-link">Logout</a>
 </header>
 
-<nav class="sidebar">
+<nav class="sidebar" *ngIf="auth.isLoggedIn">
   <h1>Consultorio</h1>
   <ul>
     <li><a routerLink="/patients" routerLinkActive="active">Pacientes</a></li>

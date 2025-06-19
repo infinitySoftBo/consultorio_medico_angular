@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DataService } from '../../services/data.service';
 
 interface KPI {
   label: string;
@@ -14,10 +15,20 @@ interface KPI {
   templateUrl: './reports.component.html',
   styleUrl: './reports.component.css'
 })
-export class ReportsComponent {
-  kpis: KPI[] = [
-    { label: 'Pacientes registrados', value: 0 },
-    { label: 'Citas programadas', value: 0 },
-    { label: 'Pagos recibidos', value: 0 },
-  ];
+export class ReportsComponent implements OnInit {
+  constructor(private data: DataService) {}
+
+  get kpis(): KPI[] {
+    return [
+      { label: 'Pacientes registrados', value: this.data.patients.length },
+      { label: 'Citas programadas', value: this.data.appointments.length },
+      { label: 'Pagos recibidos', value: this.data.payments.reduce((t,p)=>t+p.amount,0) },
+    ];
+  }
+
+  get maxValue(): number {
+    return Math.max(...this.kpis.map(k => k.value), 0);
+  }
+
+  ngOnInit() {}
 }

@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-interface Item {
-  name: string;
-  qty: number;
-}
+import { DataService, InventoryItem } from '../../services/data.service';
 
 @Component({
   selector: 'app-inventory',
@@ -15,12 +11,17 @@ interface Item {
   styleUrl: './inventory.component.css'
 })
 export class InventoryComponent {
-  items: Item[] = [];
-  newItem: Item = { name: '', qty: 0 };
+  newItem: InventoryItem = { name: '', qty: 0 };
+
+  constructor(public data: DataService) {}
+
+  get items() {
+    return this.data.inventory;
+  }
 
   addItem() {
     if (this.newItem.name && this.newItem.qty >= 0) {
-      this.items.push({ ...this.newItem });
+      this.data.inventory.push({ ...this.newItem });
       this.newItem = { name: '', qty: 0 };
     }
   }

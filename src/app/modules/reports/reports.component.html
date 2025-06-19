@@ -6,3 +6,14 @@
     <td>{{ k.value }}</td>
   </tr>
 </table>
+
+<div class="chart" *ngIf="kpis.length">
+  <div
+    class="bar"
+    *ngFor="let k of kpis"
+    [style.height.%]="(k.value / maxValue) * 100"
+    [title]="k.label + ': ' + k.value"
+  >
+    {{ k.value }}
+  </div>
+</div>

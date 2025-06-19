@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-interface Prescription {
-  patient: string;
-  medication: string;
-}
+import { DataService, Prescription } from '../../services/data.service';
 
 @Component({
   selector: 'app-e-prescription',
@@ -15,12 +11,17 @@ interface Prescription {
   styleUrl: './e-prescription.component.css'
 })
 export class EPrescriptionComponent {
-  prescriptions: Prescription[] = [];
   newPrescription: Prescription = { patient: '', medication: '' };
+
+  constructor(public data: DataService) {}
+
+  get prescriptions() {
+    return this.data.prescriptions;
+  }
 
   addPrescription() {
     if (this.newPrescription.patient && this.newPrescription.medication) {
-      this.prescriptions.push({ ...this.newPrescription });
+      this.data.prescriptions.push({ ...this.newPrescription });
       this.newPrescription = { patient: '', medication: '' };
     }
   }

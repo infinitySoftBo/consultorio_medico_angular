@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-interface Patient {
-  name: string;
-  age: number;
-  phone: string;
-  email: string;
-}
+import { DataService, Patient } from '../../services/data.service';
 
 @Component({
   selector: 'app-patient-management',
@@ -17,12 +11,17 @@ interface Patient {
   styleUrl: './patient-management.component.css'
 })
 export class PatientManagementComponent {
-  patients: Patient[] = [];
   newPatient: Patient = { name: '', age: 0, phone: '', email: '' };
+
+  constructor(public data: DataService) {}
+
+  get patients() {
+    return this.data.patients;
+  }
 
   addPatient() {
     if (this.newPatient.name.trim()) {
-      this.patients.push({ ...this.newPatient });
+      this.data.patients.push({ ...this.newPatient });
       this.newPatient = { name: '', age: 0, phone: '', email: '' };
     }
   }

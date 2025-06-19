@@ -72,6 +72,10 @@ Las rutas disponibles son:
 - `/reports` Reportes e Indicadores
 - `/login` Inicio de Sesión
 
-Se añadió una barra superior fija con acceso rápido al módulo de inicio de sesión
-y se mejoró la interfaz con tablas y botones interactivos para una experiencia de
-usuario más moderna.
+Para ingresar a los módulos es necesario autenticarse primero en `/login`. Una
+vez iniciada la sesión se habilita la navegación lateral y se puede cerrar la
+sesión desde el enlace *Logout* en la barra superior.
+
+El módulo de reportes ahora muestra un gráfico de barras que resume la cantidad
+de pacientes registrados, citas programadas y la suma de pagos registrados usando
+los datos capturados en los formularios.
