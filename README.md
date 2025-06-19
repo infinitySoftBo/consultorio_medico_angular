@@ -64,7 +64,7 @@ Este proyecto incluye un conjunto de módulos básicos para gestionar un consult
 Cada módulo cuenta con una pequeña interfaz interactiva para agregar y listar información.
 Las rutas disponibles son:
 - `/patients` Gestión de Pacientes
-- `/calendar` Agenda Médica
+- `/calendar` Agenda Médica con registro de fecha y hora y vista de calendario. Al seleccionar un día se muestran las citas programadas para esa fecha
 - `/history` Historia Clínica
 - `/prescriptions` Prescripción Médica
 - `/payments` Gestión de Pagos
