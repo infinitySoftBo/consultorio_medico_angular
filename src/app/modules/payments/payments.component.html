@@ -1,13 +1,7 @@
 <h2>Pagos</h2>
 
 <form (ngSubmit)="addPayment()" class="form">
-  <input
-    type="text"
-    name="patient"
-    placeholder="Paciente"
-    [(ngModel)]="newPayment.patient"
-    required
-  />
+  <app-patient-selector (select)="onPatientSelected($event)"></app-patient-selector>
   <input
     type="number"
     name="amount"
