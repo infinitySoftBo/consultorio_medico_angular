@@ -72,6 +72,16 @@ Las rutas disponibles son:
 - `/reports` Reportes e Indicadores
 - `/login` Inicio de Sesión
 
+### Funcionalidades principales
+
+1. **Gestión de Pacientes**: registro completo con antecedentes y datos personales.
+2. **Agenda Médica y Recordatorios**: organización de citas y envío de recordatorios automáticos.
+3. **Historia Clínica Digital**: seguimiento de diagnósticos y evoluciones médicas.
+4. **Prescripción Médica Electrónica**: recetas digitales con dosificación.
+5. **Gestión de Pagos y Cobranzas**: control de saldos y emisión de recibos.
+6. **Inventario Médico y Farmacológico**: control de stock por categoría.
+7. **Reportes e Indicadores Clínico-Administrativos**: dashboard con métricas básicas.
+
 Para ingresar a los módulos es necesario autenticarse primero en `/login`. Una
 vez iniciada la sesión se habilita la navegación lateral y se puede cerrar la
 sesión desde el enlace *Logout* en la barra superior.

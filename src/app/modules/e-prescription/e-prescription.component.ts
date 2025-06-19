@@ -1,27 +1,34 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DataService, Prescription } from '../../services/data.service';
+import { DataService, Patient, Prescription } from '../../services/data.service';
+import { PatientSelectorComponent } from '../../shared/patient-selector.component';
 
 @Component({
   selector: 'app-e-prescription',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PatientSelectorComponent],
   templateUrl: './e-prescription.component.html',
   styleUrl: './e-prescription.component.css'
 })
 export class EPrescriptionComponent {
-  newPrescription: Prescription = { patient: '', medication: '' };
+  newPrescription: Prescription = { patient: '', medication: '', dosage: '' };
+  selectedPatient: Patient | null = null;
   editingIndex: number | null = null;
 
   constructor(public data: DataService) {}
+
+  onPatientSelected(patient: Patient) {
+    this.selectedPatient = patient;
+    this.newPrescription.patient = patient.name;
+  }
 
   get prescriptions() {
     return this.data.prescriptions;
   }
 
   addPrescription() {
-    if (!this.newPrescription.patient || !this.newPrescription.medication) {
+    if (!this.newPrescription.patient || !this.newPrescription.medication || !this.newPrescription.dosage) {
       return;
     }
 
@@ -32,7 +39,7 @@ export class EPrescriptionComponent {
       this.editingIndex = null;
     }
 
-    this.newPrescription = { patient: '', medication: '' };
+    this.newPrescription = { patient: '', medication: '', dosage: '' };
   }
 
   editPrescription(i: number) {
@@ -42,6 +49,6 @@ export class EPrescriptionComponent {
 
   cancelEdit() {
     this.editingIndex = null;
-    this.newPrescription = { patient: '', medication: '' };
+    this.newPrescription = { patient: '', medication: '', dosage: '' };
   }
 }

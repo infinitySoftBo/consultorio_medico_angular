@@ -3,6 +3,13 @@
 <form (ngSubmit)="addPatient()" class="form">
   <input
     type="text"
+    name="id"
+    placeholder="ID"
+    [(ngModel)]="newPatient.id"
+    required
+  />
+  <input
+    type="text"
     name="name"
     placeholder="Nombre"
     [(ngModel)]="newPatient.name"
@@ -27,6 +34,11 @@
     placeholder="Email"
     [(ngModel)]="newPatient.email"
   />
+  <textarea
+    name="history"
+    placeholder="Historial médico"
+    [(ngModel)]="newPatient.history"
+  ></textarea>
   <button type="submit" class="primary">{{ editingIndex !== null ? 'Guardar' : 'Agregar' }}</button>
   <button *ngIf="editingIndex !== null" type="button" (click)="cancelEdit()">Cancelar</button>
 </form>
@@ -34,19 +46,23 @@
 <table class="list" *ngIf="patients.length">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Nombre</th>
       <th>Edad</th>
       <th>Teléfono</th>
       <th>Email</th>
+      <th>Historial</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let p of patients; let i = index">
+      <td>{{ p.id }}</td>
       <td>{{ p.name }}</td>
       <td>{{ p.age }}</td>
       <td>{{ p.phone }}</td>
       <td>{{ p.email }}</td>
+      <td>{{ p.history }}</td>
       <td>
         <button (click)="editPatient(i)">Editar</button>
         <button (click)="patients.splice(i,1)">Eliminar</button>

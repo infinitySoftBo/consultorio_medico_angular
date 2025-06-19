@@ -15,6 +15,13 @@
     [(ngModel)]="newItem.qty"
     required
   />
+  <input
+    type="text"
+    name="category"
+    placeholder="Categoría"
+    [(ngModel)]="newItem.category"
+    required
+  />
   <button type="submit" class="primary">
     {{ editingIndex !== null ? 'Guardar' : 'Agregar' }}
   </button>
@@ -26,6 +33,7 @@
     <tr>
       <th>Nombre</th>
       <th>Cantidad</th>
+      <th>Categoría</th>
       <th></th>
     </tr>
   </thead>
@@ -33,6 +41,7 @@
     <tr *ngFor="let i of items; let idx = index">
       <td>{{ i.name }}</td>
       <td>{{ i.qty }}</td>
+      <td>{{ i.category }}</td>
       <td>
         <button (click)="editItem(idx)">Editar</button>
         <button (click)="items.splice(idx,1)">Eliminar</button>

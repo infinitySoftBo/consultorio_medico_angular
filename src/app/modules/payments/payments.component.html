@@ -1,18 +1,19 @@
 <h2>Pagos</h2>
 
 <form (ngSubmit)="addPayment()" class="form">
-  <input
-    type="text"
-    name="patient"
-    placeholder="Paciente"
-    [(ngModel)]="newPayment.patient"
-    required
-  />
+  <app-patient-selector (select)="onPatientSelected($event)"></app-patient-selector>
   <input
     type="number"
     name="amount"
     placeholder="Monto"
     [(ngModel)]="newPayment.amount"
+    required
+  />
+  <input
+    type="text"
+    name="receipt"
+    placeholder="Recibo"
+    [(ngModel)]="newPayment.receipt"
     required
   />
   <button type="submit" class="primary">
@@ -26,6 +27,7 @@
     <tr>
       <th>Paciente</th>
       <th>Monto</th>
+      <th>Recibo</th>
       <th></th>
     </tr>
   </thead>
@@ -33,6 +35,7 @@
     <tr *ngFor="let p of payments; let i = index">
       <td>{{ p.patient }}</td>
       <td>${{ p.amount }}</td>
+      <td>{{ p.receipt }}</td>
       <td>
         <button (click)="editPayment(i)">Editar</button>
         <button (click)="payments.splice(i,1)">Eliminar</button>
