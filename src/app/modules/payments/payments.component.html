@@ -1,0 +1,36 @@
+<h2>Pagos</h2>
+
+<form (ngSubmit)="addPayment()" class="form">
+  <input
+    type="text"
+    name="patient"
+    placeholder="Paciente"
+    [(ngModel)]="newPayment.patient"
+    required
+  />
+  <input
+    type="number"
+    name="amount"
+    placeholder="Monto"
+    [(ngModel)]="newPayment.amount"
+    required
+  />
+  <button type="submit" class="primary">Registrar</button>
+</form>
+
+<table class="list" *ngIf="payments.length">
+  <thead>
+    <tr>
+      <th>Paciente</th>
+      <th>Monto</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of payments; let i = index">
+      <td>{{ p.patient }}</td>
+      <td>${{ p.amount }}</td>
+      <td><button (click)="payments.splice(i,1)">Eliminar</button></td>
+    </tr>
+  </tbody>
+</table>

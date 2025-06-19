@@ -1,0 +1,66 @@
+:host {
+  display: flex;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-top: 3rem;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #036;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 10;
+}
+
+.login-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+.sidebar {
+  width: 200px;
+  background: #f5faff;
+  padding: 1rem;
+  box-shadow: 2px 0 4px rgba(0,0,0,0.1);
+}
+
+.sidebar h1 {
+  font-size: 1.2rem;
+  margin-top: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 0.5rem 0;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #036;
+}
+
+.sidebar a.active {
+  font-weight: bold;
+}
+
+.content {
+  flex: 1;
+  padding: 1rem;
+  margin-top: 0;
+}

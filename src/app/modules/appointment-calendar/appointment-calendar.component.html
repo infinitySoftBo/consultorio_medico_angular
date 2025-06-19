@@ -1,0 +1,35 @@
+<h2>Agenda Médica</h2>
+
+<form (ngSubmit)="addAppointment()" class="form">
+  <input
+    type="text"
+    name="patient"
+    placeholder="Paciente"
+    [(ngModel)]="newAppointment.patient"
+    required
+  />
+  <input
+    type="date"
+    name="date"
+    [(ngModel)]="newAppointment.date"
+    required
+  />
+  <button type="submit" class="primary">Programar</button>
+</form>
+
+<table class="list" *ngIf="appointments.length">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Paciente</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of appointments; let i = index">
+      <td>{{ a.date }}</td>
+      <td>{{ a.patient }}</td>
+      <td><button (click)="appointments.splice(i,1)">Eliminar</button></td>
+    </tr>
+  </tbody>
+</table>

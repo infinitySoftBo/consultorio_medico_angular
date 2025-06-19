@@ -57,3 +57,21 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Aplicación de Consultorio
+
+Este proyecto incluye un conjunto de módulos básicos para gestionar un consultorio médico.
+Cada módulo cuenta con una pequeña interfaz interactiva para agregar y listar información.
+Las rutas disponibles son:
+- `/patients` Gestión de Pacientes
+- `/calendar` Agenda Médica
+- `/history` Historia Clínica
+- `/prescriptions` Prescripción Médica
+- `/payments` Gestión de Pagos
+- `/inventory` Inventario Médico
+- `/reports` Reportes e Indicadores
+- `/login` Inicio de Sesión
+
+Se añadió una barra superior fija con acceso rápido al módulo de inicio de sesión
+y se mejoró la interfaz con tablas y botones interactivos para una experiencia de
+usuario más moderna.

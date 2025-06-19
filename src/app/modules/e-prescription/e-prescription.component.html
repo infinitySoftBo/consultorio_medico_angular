@@ -1,0 +1,36 @@
+<h2>Prescripción Médica</h2>
+
+<form (ngSubmit)="addPrescription()" class="form">
+  <input
+    type="text"
+    name="patient"
+    placeholder="Paciente"
+    [(ngModel)]="newPrescription.patient"
+    required
+  />
+  <input
+    type="text"
+    name="medication"
+    placeholder="Medicamento"
+    [(ngModel)]="newPrescription.medication"
+    required
+  />
+  <button type="submit" class="primary">Agregar</button>
+</form>
+
+<table class="list" *ngIf="prescriptions.length">
+  <thead>
+    <tr>
+      <th>Paciente</th>
+      <th>Medicamento</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of prescriptions; let i = index">
+      <td>{{ p.patient }}</td>
+      <td>{{ p.medication }}</td>
+      <td><button (click)="prescriptions.splice(i,1)">Eliminar</button></td>
+    </tr>
+  </tbody>
+</table>
