@@ -14,7 +14,10 @@
     [(ngModel)]="newAppointment.date"
     required
   />
-  <button type="submit" class="primary">Programar</button>
+  <button type="submit" class="primary">
+    {{ editingIndex !== null ? 'Guardar' : 'Programar' }}
+  </button>
+  <button *ngIf="editingIndex !== null" type="button" (click)="cancelEdit()">Cancelar</button>
 </form>
 
 <table class="list" *ngIf="appointments.length">
@@ -29,7 +32,10 @@
     <tr *ngFor="let a of appointments; let i = index">
       <td>{{ a.date }}</td>
       <td>{{ a.patient }}</td>
-      <td><button (click)="appointments.splice(i,1)">Eliminar</button></td>
+      <td>
+        <button (click)="editAppointment(i)">Editar</button>
+        <button (click)="appointments.splice(i,1)">Eliminar</button>
+      </td>
     </tr>
   </tbody>
 </table>

@@ -12,6 +12,7 @@ import { DataService, HistoryEntry } from '../../services/data.service';
 })
 export class MedicalHistoryComponent {
   newEntry: HistoryEntry = { patient: '', notes: '' };
+  editingIndex: number | null = null;
 
   constructor(public data: DataService) {}
 
@@ -20,9 +21,27 @@ export class MedicalHistoryComponent {
   }
 
   addEntry() {
-    if (this.newEntry.patient && this.newEntry.notes) {
-      this.data.histories.push({ ...this.newEntry });
-      this.newEntry = { patient: '', notes: '' };
+    if (!this.newEntry.patient || !this.newEntry.notes) {
+      return;
     }
+
+    if (this.editingIndex === null) {
+      this.data.histories.push({ ...this.newEntry });
+    } else {
+      this.data.histories[this.editingIndex] = { ...this.newEntry };
+      this.editingIndex = null;
+    }
+
+    this.newEntry = { patient: '', notes: '' };
+  }
+
+  editEntry(i: number) {
+    this.editingIndex = i;
+    this.newEntry = { ...this.data.histories[i] };
+  }
+
+  cancelEdit() {
+    this.editingIndex = null;
+    this.newEntry = { patient: '', notes: '' };
   }
 }

@@ -15,7 +15,10 @@
     [(ngModel)]="newPayment.amount"
     required
   />
-  <button type="submit" class="primary">Registrar</button>
+  <button type="submit" class="primary">
+    {{ editingIndex !== null ? 'Guardar' : 'Registrar' }}
+  </button>
+  <button *ngIf="editingIndex !== null" type="button" (click)="cancelEdit()">Cancelar</button>
 </form>
 
 <table class="list" *ngIf="payments.length">
@@ -30,7 +33,10 @@
     <tr *ngFor="let p of payments; let i = index">
       <td>{{ p.patient }}</td>
       <td>${{ p.amount }}</td>
-      <td><button (click)="payments.splice(i,1)">Eliminar</button></td>
+      <td>
+        <button (click)="editPayment(i)">Editar</button>
+        <button (click)="payments.splice(i,1)">Eliminar</button>
+      </td>
     </tr>
   </tbody>
 </table>

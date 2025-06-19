@@ -12,6 +12,7 @@ import { DataService, Payment } from '../../services/data.service';
 })
 export class PaymentsComponent {
   newPayment: Payment = { patient: '', amount: 0 };
+  editingIndex: number | null = null;
 
   constructor(public data: DataService) {}
 
@@ -20,9 +21,27 @@ export class PaymentsComponent {
   }
 
   addPayment() {
-    if (this.newPayment.patient && this.newPayment.amount > 0) {
-      this.data.payments.push({ ...this.newPayment });
-      this.newPayment = { patient: '', amount: 0 };
+    if (!this.newPayment.patient || this.newPayment.amount <= 0) {
+      return;
     }
+
+    if (this.editingIndex === null) {
+      this.data.payments.push({ ...this.newPayment });
+    } else {
+      this.data.payments[this.editingIndex] = { ...this.newPayment };
+      this.editingIndex = null;
+    }
+
+    this.newPayment = { patient: '', amount: 0 };
+  }
+
+  editPayment(i: number) {
+    this.editingIndex = i;
+    this.newPayment = { ...this.data.payments[i] };
+  }
+
+  cancelEdit() {
+    this.editingIndex = null;
+    this.newPayment = { patient: '', amount: 0 };
   }
 }

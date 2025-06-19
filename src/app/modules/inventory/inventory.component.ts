@@ -12,6 +12,7 @@ import { DataService, InventoryItem } from '../../services/data.service';
 })
 export class InventoryComponent {
   newItem: InventoryItem = { name: '', qty: 0 };
+  editingIndex: number | null = null;
 
   constructor(public data: DataService) {}
 
@@ -21,8 +22,23 @@ export class InventoryComponent {
 
   addItem() {
     if (this.newItem.name && this.newItem.qty >= 0) {
-      this.data.inventory.push({ ...this.newItem });
+      if (this.editingIndex === null) {
+        this.data.inventory.push({ ...this.newItem });
+      } else {
+        this.data.inventory[this.editingIndex] = { ...this.newItem };
+        this.editingIndex = null;
+      }
       this.newItem = { name: '', qty: 0 };
     }
+  }
+
+  editItem(i: number) {
+    this.editingIndex = i;
+    this.newItem = { ...this.data.inventory[i] };
+  }
+
+  cancelEdit() {
+    this.editingIndex = null;
+    this.newItem = { name: '', qty: 0 };
   }
 }

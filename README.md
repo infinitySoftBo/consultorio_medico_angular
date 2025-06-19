@@ -79,3 +79,7 @@ sesión desde el enlace *Logout* en la barra superior.
 El módulo de reportes ahora muestra un gráfico de barras que resume la cantidad
 de pacientes registrados, citas programadas y la suma de pagos registrados usando
 los datos capturados en los formularios.
+
+### Datos de prueba
+
+Al iniciar la aplicación se precargan algunos pacientes, citas y elementos de inventario. Estos datos de ejemplo permiten observar de inmediato las tablas de cada módulo y los indicadores del apartado de reportes.

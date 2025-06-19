@@ -12,6 +12,7 @@ import { DataService, Appointment } from '../../services/data.service';
 })
 export class AppointmentCalendarComponent {
   newAppointment: Appointment = { patient: '', date: '' };
+  editingIndex: number | null = null;
 
   constructor(public data: DataService) {}
 
@@ -20,9 +21,27 @@ export class AppointmentCalendarComponent {
   }
 
   addAppointment() {
-    if (this.newAppointment.patient && this.newAppointment.date) {
-      this.data.appointments.push({ ...this.newAppointment });
-      this.newAppointment = { patient: '', date: '' };
+    if (!this.newAppointment.patient || !this.newAppointment.date) {
+      return;
     }
+
+    if (this.editingIndex === null) {
+      this.data.appointments.push({ ...this.newAppointment });
+    } else {
+      this.data.appointments[this.editingIndex] = { ...this.newAppointment };
+      this.editingIndex = null;
+    }
+
+    this.newAppointment = { patient: '', date: '' };
+  }
+
+  editAppointment(i: number) {
+    this.editingIndex = i;
+    this.newAppointment = { ...this.data.appointments[i] };
+  }
+
+  cancelEdit() {
+    this.editingIndex = null;
+    this.newAppointment = { patient: '', date: '' };
   }
 }

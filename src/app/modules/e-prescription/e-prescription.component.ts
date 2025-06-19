@@ -12,6 +12,7 @@ import { DataService, Prescription } from '../../services/data.service';
 })
 export class EPrescriptionComponent {
   newPrescription: Prescription = { patient: '', medication: '' };
+  editingIndex: number | null = null;
 
   constructor(public data: DataService) {}
 
@@ -20,9 +21,27 @@ export class EPrescriptionComponent {
   }
 
   addPrescription() {
-    if (this.newPrescription.patient && this.newPrescription.medication) {
-      this.data.prescriptions.push({ ...this.newPrescription });
-      this.newPrescription = { patient: '', medication: '' };
+    if (!this.newPrescription.patient || !this.newPrescription.medication) {
+      return;
     }
+
+    if (this.editingIndex === null) {
+      this.data.prescriptions.push({ ...this.newPrescription });
+    } else {
+      this.data.prescriptions[this.editingIndex] = { ...this.newPrescription };
+      this.editingIndex = null;
+    }
+
+    this.newPrescription = { patient: '', medication: '' };
+  }
+
+  editPrescription(i: number) {
+    this.editingIndex = i;
+    this.newPrescription = { ...this.data.prescriptions[i] };
+  }
+
+  cancelEdit() {
+    this.editingIndex = null;
+    this.newPrescription = { patient: '', medication: '' };
   }
 }

@@ -18,6 +18,18 @@ interface KPI {
 export class ReportsComponent implements OnInit {
   constructor(private data: DataService) {}
 
+  get patients() {
+    return this.data.patients;
+  }
+
+  get appointments() {
+    return this.data.appointments;
+  }
+
+  get inventory() {
+    return this.data.inventory;
+  }
+
   get kpis(): KPI[] {
     return [
       { label: 'Pacientes registrados', value: this.data.patients.length },

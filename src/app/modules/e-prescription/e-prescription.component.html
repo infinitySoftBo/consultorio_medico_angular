@@ -15,7 +15,10 @@
     [(ngModel)]="newPrescription.medication"
     required
   />
-  <button type="submit" class="primary">Agregar</button>
+  <button type="submit" class="primary">
+    {{ editingIndex !== null ? 'Guardar' : 'Agregar' }}
+  </button>
+  <button *ngIf="editingIndex !== null" type="button" (click)="cancelEdit()">Cancelar</button>
 </form>
 
 <table class="list" *ngIf="prescriptions.length">
@@ -30,7 +33,10 @@
     <tr *ngFor="let p of prescriptions; let i = index">
       <td>{{ p.patient }}</td>
       <td>{{ p.medication }}</td>
-      <td><button (click)="prescriptions.splice(i,1)">Eliminar</button></td>
+      <td>
+        <button (click)="editPrescription(i)">Editar</button>
+        <button (click)="prescriptions.splice(i,1)">Eliminar</button>
+      </td>
     </tr>
   </tbody>
 </table>
