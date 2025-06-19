@@ -6,19 +6,40 @@ export interface Patient {
   age: number;
   phone: string;
   email: string;
+  history: string;
 }
-export interface Appointment { patient: string; date: string; time: string; }
-export interface HistoryEntry { patient: string; notes: string; }
-export interface Prescription { patient: string; medication: string; }
-export interface Payment { patient: string; amount: number; }
-export interface InventoryItem { name: string; qty: number; }
+export interface Appointment {
+  patient: string;
+  date: string;
+  time: string;
+}
+export interface HistoryEntry {
+  patient: string;
+  diagnosis: string;
+  notes: string;
+}
+export interface Prescription {
+  patient: string;
+  medication: string;
+  dosage: string;
+}
+export interface Payment {
+  patient: string;
+  amount: number;
+  receipt: string;
+}
+export interface InventoryItem {
+  name: string;
+  qty: number;
+  category: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
   patients: Patient[] = [
-    { id: 'P001', name: 'Juan Perez', age: 30, phone: '123456', email: 'juan@example.com' },
-    { id: 'P002', name: 'Maria Gomez', age: 25, phone: '234567', email: 'maria@example.com' },
-    { id: 'P003', name: 'Carlos Ruiz', age: 40, phone: '345678', email: 'carlos@example.com' },
+    { id: 'P001', name: 'Juan Perez', age: 30, phone: '123456', email: 'juan@example.com', history: 'Hipertensión' },
+    { id: 'P002', name: 'Maria Gomez', age: 25, phone: '234567', email: 'maria@example.com', history: 'Alergia a penicilina' },
+    { id: 'P003', name: 'Carlos Ruiz', age: 40, phone: '345678', email: 'carlos@example.com', history: 'Chequeo anual' },
   ];
 
   appointments: Appointment[] = [
@@ -29,22 +50,22 @@ export class DataService {
   ];
 
   histories: HistoryEntry[] = [
-    { patient: 'Juan Perez', notes: 'Diabetes control' },
-    { patient: 'Carlos Ruiz', notes: 'Chequeo general' },
+    { patient: 'Juan Perez', diagnosis: 'Diabetes', notes: 'Control trimestral' },
+    { patient: 'Carlos Ruiz', diagnosis: 'General', notes: 'Chequeo anual' },
   ];
 
   prescriptions: Prescription[] = [
-    { patient: 'Maria Gomez', medication: 'Paracetamol 500mg' },
+    { patient: 'Maria Gomez', medication: 'Paracetamol', dosage: '500mg cada 8h' },
   ];
 
   payments: Payment[] = [
-    { patient: 'Juan Perez', amount: 100 },
-    { patient: 'Maria Gomez', amount: 150 },
+    { patient: 'Juan Perez', amount: 100, receipt: 'R001' },
+    { patient: 'Maria Gomez', amount: 150, receipt: 'R002' },
   ];
 
   inventory: InventoryItem[] = [
-    { name: 'Paracetamol', qty: 20 },
-    { name: 'Guantes', qty: 100 },
-    { name: 'Jeringas', qty: 50 },
+    { name: 'Paracetamol', qty: 20, category: 'Medicamento' },
+    { name: 'Guantes', qty: 100, category: 'Insumo' },
+    { name: 'Jeringas', qty: 50, category: 'Insumo' },
   ];
 }

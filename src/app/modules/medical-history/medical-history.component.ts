@@ -12,7 +12,7 @@ import { PatientSelectorComponent } from '../../shared/patient-selector.componen
   styleUrl: './medical-history.component.css'
 })
 export class MedicalHistoryComponent {
-  newEntry: HistoryEntry = { patient: '', notes: '' };
+  newEntry: HistoryEntry = { patient: '', diagnosis: '', notes: '' };
   editingIndex: number | null = null;
   selectedPatient: Patient | null = null;
 
@@ -28,7 +28,7 @@ export class MedicalHistoryComponent {
   }
 
   addEntry() {
-    if (!this.newEntry.patient || !this.newEntry.notes) {
+    if (!this.newEntry.patient || !this.newEntry.diagnosis || !this.newEntry.notes) {
       return;
     }
 
@@ -39,7 +39,7 @@ export class MedicalHistoryComponent {
       this.editingIndex = null;
     }
 
-    this.newEntry = { patient: '', notes: '' };
+    this.newEntry = { patient: '', diagnosis: '', notes: '' };
   }
 
   editEntry(i: number) {
@@ -49,6 +49,6 @@ export class MedicalHistoryComponent {
 
   cancelEdit() {
     this.editingIndex = null;
-    this.newEntry = { patient: '', notes: '' };
+    this.newEntry = { patient: '', diagnosis: '', notes: '' };
   }
 }

@@ -34,6 +34,11 @@
     placeholder="Email"
     [(ngModel)]="newPatient.email"
   />
+  <textarea
+    name="history"
+    placeholder="Historial médico"
+    [(ngModel)]="newPatient.history"
+  ></textarea>
   <button type="submit" class="primary">{{ editingIndex !== null ? 'Guardar' : 'Agregar' }}</button>
   <button *ngIf="editingIndex !== null" type="button" (click)="cancelEdit()">Cancelar</button>
 </form>
@@ -46,6 +51,7 @@
       <th>Edad</th>
       <th>Teléfono</th>
       <th>Email</th>
+      <th>Historial</th>
       <th></th>
     </tr>
   </thead>
@@ -56,6 +62,7 @@
       <td>{{ p.age }}</td>
       <td>{{ p.phone }}</td>
       <td>{{ p.email }}</td>
+      <td>{{ p.history }}</td>
       <td>
         <button (click)="editPatient(i)">Editar</button>
         <button (click)="patients.splice(i,1)">Eliminar</button>

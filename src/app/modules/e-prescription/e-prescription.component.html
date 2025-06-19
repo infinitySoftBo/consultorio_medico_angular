@@ -9,6 +9,13 @@
     [(ngModel)]="newPrescription.medication"
     required
   />
+  <input
+    type="text"
+    name="dosage"
+    placeholder="Dosificación"
+    [(ngModel)]="newPrescription.dosage"
+    required
+  />
   <button type="submit" class="primary">
     {{ editingIndex !== null ? 'Guardar' : 'Agregar' }}
   </button>
@@ -20,6 +27,7 @@
     <tr>
       <th>Paciente</th>
       <th>Medicamento</th>
+      <th>Dosificación</th>
       <th></th>
     </tr>
   </thead>
@@ -27,6 +35,7 @@
     <tr *ngFor="let p of prescriptions; let i = index">
       <td>{{ p.patient }}</td>
       <td>{{ p.medication }}</td>
+      <td>{{ p.dosage }}</td>
       <td>
         <button (click)="editPrescription(i)">Editar</button>
         <button (click)="prescriptions.splice(i,1)">Eliminar</button>

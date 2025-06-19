@@ -9,6 +9,13 @@
     [(ngModel)]="newPayment.amount"
     required
   />
+  <input
+    type="text"
+    name="receipt"
+    placeholder="Recibo"
+    [(ngModel)]="newPayment.receipt"
+    required
+  />
   <button type="submit" class="primary">
     {{ editingIndex !== null ? 'Guardar' : 'Registrar' }}
   </button>
@@ -20,6 +27,7 @@
     <tr>
       <th>Paciente</th>
       <th>Monto</th>
+      <th>Recibo</th>
       <th></th>
     </tr>
   </thead>
@@ -27,6 +35,7 @@
     <tr *ngFor="let p of payments; let i = index">
       <td>{{ p.patient }}</td>
       <td>${{ p.amount }}</td>
+      <td>{{ p.receipt }}</td>
       <td>
         <button (click)="editPayment(i)">Editar</button>
         <button (click)="payments.splice(i,1)">Eliminar</button>

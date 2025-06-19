@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataService, Appointment, Patient } from '../../services/data.service';
+import { ReminderService } from '../../services/reminder.service';
 import { PatientSelectorComponent } from '../../shared/patient-selector.component';
 
 @Component({
@@ -19,7 +20,7 @@ export class AppointmentCalendarComponent {
   currentMonth = new Date();
   selectedDate: string | null = null;
 
-  constructor(public data: DataService) {}
+  constructor(public data: DataService, private reminders: ReminderService) {}
 
   onPatientSelected(patient: Patient) {
     this.selectedPatient = patient;
@@ -69,6 +70,9 @@ export class AppointmentCalendarComponent {
     } else {
       this.data.appointments[this.editingIndex] = { ...this.newAppointment };
       this.editingIndex = null;
+    }
+    if (this.selectedPatient) {
+      this.reminders.sendReminder(this.selectedPatient, this.newAppointment);
     }
 
     this.newAppointment = { patient: '', date: '', time: '' };

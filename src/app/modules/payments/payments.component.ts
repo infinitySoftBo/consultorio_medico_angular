@@ -12,7 +12,7 @@ import { PatientSelectorComponent } from '../../shared/patient-selector.componen
   styleUrl: './payments.component.css'
 })
 export class PaymentsComponent {
-  newPayment: Payment = { patient: '', amount: 0 };
+  newPayment: Payment = { patient: '', amount: 0, receipt: '' };
   editingIndex: number | null = null;
   selectedPatient: Patient | null = null;
 
@@ -28,7 +28,7 @@ export class PaymentsComponent {
   }
 
   addPayment() {
-    if (!this.newPayment.patient || this.newPayment.amount <= 0) {
+    if (!this.newPayment.patient || this.newPayment.amount <= 0 || !this.newPayment.receipt) {
       return;
     }
 
@@ -39,7 +39,7 @@ export class PaymentsComponent {
       this.editingIndex = null;
     }
 
-    this.newPayment = { patient: '', amount: 0 };
+    this.newPayment = { patient: '', amount: 0, receipt: '' };
   }
 
   editPayment(i: number) {
@@ -49,6 +49,6 @@ export class PaymentsComponent {
 
   cancelEdit() {
     this.editingIndex = null;
-    this.newPayment = { patient: '', amount: 0 };
+    this.newPayment = { patient: '', amount: 0, receipt: '' };
   }
 }

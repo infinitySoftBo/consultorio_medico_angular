@@ -12,7 +12,7 @@ import { PatientSelectorComponent } from '../../shared/patient-selector.componen
   styleUrl: './e-prescription.component.css'
 })
 export class EPrescriptionComponent {
-  newPrescription: Prescription = { patient: '', medication: '' };
+  newPrescription: Prescription = { patient: '', medication: '', dosage: '' };
   selectedPatient: Patient | null = null;
   editingIndex: number | null = null;
 
@@ -28,7 +28,7 @@ export class EPrescriptionComponent {
   }
 
   addPrescription() {
-    if (!this.newPrescription.patient || !this.newPrescription.medication) {
+    if (!this.newPrescription.patient || !this.newPrescription.medication || !this.newPrescription.dosage) {
       return;
     }
 
@@ -39,7 +39,7 @@ export class EPrescriptionComponent {
       this.editingIndex = null;
     }
 
-    this.newPrescription = { patient: '', medication: '' };
+    this.newPrescription = { patient: '', medication: '', dosage: '' };
   }
 
   editPrescription(i: number) {
@@ -49,6 +49,6 @@ export class EPrescriptionComponent {
 
   cancelEdit() {
     this.editingIndex = null;
-    this.newPrescription = { patient: '', medication: '' };
+    this.newPrescription = { patient: '', medication: '', dosage: '' };
   }
 }
