@@ -1,0 +1,56 @@
+<h2>Gestión de Pacientes</h2>
+
+<form (ngSubmit)="addPatient()" class="form">
+  <input
+    type="text"
+    name="name"
+    placeholder="Nombre"
+    [(ngModel)]="newPatient.name"
+    required
+  />
+  <input
+    type="number"
+    name="age"
+    placeholder="Edad"
+    [(ngModel)]="newPatient.age"
+    required
+  />
+  <input
+    type="text"
+    name="phone"
+    placeholder="Teléfono"
+    [(ngModel)]="newPatient.phone"
+  />
+  <input
+    type="email"
+    name="email"
+    placeholder="Email"
+    [(ngModel)]="newPatient.email"
+  />
+  <button type="submit" class="primary">{{ editingIndex !== null ? 'Guardar' : 'Agregar' }}</button>
+  <button *ngIf="editingIndex !== null" type="button" (click)="cancelEdit()">Cancelar</button>
+</form>
+
+<table class="list" *ngIf="patients.length">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Edad</th>
+      <th>Teléfono</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of patients; let i = index">
+      <td>{{ p.name }}</td>
+      <td>{{ p.age }}</td>
+      <td>{{ p.phone }}</td>
+      <td>{{ p.email }}</td>
+      <td>
+        <button (click)="editPatient(i)">Editar</button>
+        <button (click)="patients.splice(i,1)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

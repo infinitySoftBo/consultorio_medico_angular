@@ -1,0 +1,20 @@
+<header class="header">
+  <a *ngIf="!auth.isLoggedIn" routerLink="/login" class="login-link">Login</a>
+  <a *ngIf="auth.isLoggedIn" (click)="logout()" class="login-link">Logout</a>
+</header>
+
+<nav class="sidebar" *ngIf="auth.isLoggedIn">
+  <h1>Consultorio</h1>
+  <ul>
+    <li><a routerLink="/patients" routerLinkActive="active">Pacientes</a></li>
+    <li><a routerLink="/calendar" routerLinkActive="active">Agenda</a></li>
+    <li><a routerLink="/history" routerLinkActive="active">Historia Clínica</a></li>
+    <li><a routerLink="/prescriptions" routerLinkActive="active">Prescripciones</a></li>
+    <li><a routerLink="/payments" routerLinkActive="active">Pagos</a></li>
+    <li><a routerLink="/inventory" routerLinkActive="active">Inventario</a></li>
+    <li><a routerLink="/reports" routerLinkActive="active">Reportes</a></li>
+  </ul>
+</nav>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
