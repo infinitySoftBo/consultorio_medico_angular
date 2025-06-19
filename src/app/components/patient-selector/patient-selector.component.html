@@ -1,0 +1,13 @@
+<ng-container *ngIf="patients.length; else noData">
+  <mat-form-field class="full-width">
+    <input type="text" matInput [formControl]="control" [matAutocomplete]="auto" placeholder="Seleccionar paciente" />
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn.bind(this)" (optionSelected)="onOptionSelected($event.option.value)">
+      <mat-option *ngFor="let p of filtered | async" [value]="p">
+        {{ p.name }} ({{ p.id }})
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</ng-container>
+<ng-template #noData>
+  <p class="no-data">No hay pacientes registrados. Por favor registre uno nuevo.</p>
+</ng-template>

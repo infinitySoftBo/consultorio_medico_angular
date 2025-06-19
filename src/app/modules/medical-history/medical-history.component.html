@@ -1,0 +1,36 @@
+<h2>Historia Clínica</h2>
+
+<form (ngSubmit)="addEntry()" class="form">
+  <app-patient-selector (selected)="selectedPatient = $event"></app-patient-selector>
+  <input
+    type="text"
+    name="notes"
+    placeholder="Notas"
+    [(ngModel)]="newEntry.notes"
+    required
+  />
+  <button type="submit" class="primary">
+    {{ editingIndex !== null ? 'Guardar' : 'Agregar' }}
+  </button>
+  <button *ngIf="editingIndex !== null" type="button" (click)="cancelEdit()">Cancelar</button>
+</form>
+
+<table class="list" *ngIf="entries.length">
+  <thead>
+    <tr>
+      <th>Paciente</th>
+      <th>Notas</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let e of entries; let i = index">
+      <td>{{ e.patient }}</td>
+      <td>{{ e.notes }}</td>
+      <td>
+        <button (click)="editEntry(i)">Editar</button>
+        <button (click)="entries.splice(i,1)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

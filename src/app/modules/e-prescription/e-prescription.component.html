@@ -1,0 +1,36 @@
+<h2>Prescripción Médica</h2>
+
+<form (ngSubmit)="addPrescription()" class="form">
+  <app-patient-selector (selected)="selectedPatient = $event"></app-patient-selector>
+  <input
+    type="text"
+    name="medication"
+    placeholder="Medicamento"
+    [(ngModel)]="newPrescription.medication"
+    required
+  />
+  <button type="submit" class="primary">
+    {{ editingIndex !== null ? 'Guardar' : 'Agregar' }}
+  </button>
+  <button *ngIf="editingIndex !== null" type="button" (click)="cancelEdit()">Cancelar</button>
+</form>
+
+<table class="list" *ngIf="prescriptions.length">
+  <thead>
+    <tr>
+      <th>Paciente</th>
+      <th>Medicamento</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of prescriptions; let i = index">
+      <td>{{ p.patient }}</td>
+      <td>{{ p.medication }}</td>
+      <td>
+        <button (click)="editPrescription(i)">Editar</button>
+        <button (click)="prescriptions.splice(i,1)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

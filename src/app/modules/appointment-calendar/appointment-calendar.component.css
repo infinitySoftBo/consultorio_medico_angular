@@ -1,0 +1,62 @@
+
+form {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+input {
+  padding: 0.25rem 0.5rem;
+}
+
+button {
+  padding: 0.25rem 0.75rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+}
+
+th {
+  background: #f0f0f0;
+}
+
+.calendar {
+  margin-top: 1rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+}
+
+.day {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  text-align: center;
+  cursor: pointer;
+}
+
+.day.has-appointments {
+  background: #cdeffd;
+}
+
+.day-detail {
+  margin-top: 1rem;
+  background: #f9f9f9;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+}

@@ -57,3 +57,33 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Aplicación de Consultorio
+
+Este proyecto incluye un conjunto de módulos básicos para gestionar un consultorio médico.
+Cada módulo cuenta con una pequeña interfaz interactiva para agregar y listar información.
+Las rutas disponibles son:
+- `/patients` Gestión de Pacientes
+- `/calendar` Agenda Médica con registro de fecha y hora y vista de calendario. Al seleccionar un día se muestran las citas programadas para esa fecha
+- `/history` Historia Clínica
+- `/prescriptions` Prescripción Médica
+- `/payments` Gestión de Pagos
+- `/inventory` Inventario Médico
+- `/reports` Reportes e Indicadores
+- `/login` Inicio de Sesión
+
+Para ingresar a los módulos es necesario autenticarse primero en `/login`. Una
+vez iniciada la sesión se habilita la navegación lateral y se puede cerrar la
+sesión desde el enlace *Logout* en la barra superior.
+
+El módulo de reportes ahora muestra un gráfico de barras que resume la cantidad
+de pacientes registrados, citas programadas y la suma de pagos registrados usando
+los datos capturados en los formularios.
+
+### Datos de prueba
+
+Al iniciar la aplicación se precargan algunos pacientes, citas y elementos de inventario. Estos datos de ejemplo permiten observar de inmediato las tablas de cada módulo y los indicadores del apartado de reportes.
+
+### Selección rápida de pacientes
+
+Los formularios de prescripciones, historia clínica, agenda y pagos utilizan un componente reutilizable para escoger pacientes existentes. El `PatientSelectorComponent` muestra un campo con autocompletado basado en Angular Material y evita escribir los datos de cada paciente manualmente. Si no hay pacientes registrados aparece un mensaje solicitando registrar uno nuevo.

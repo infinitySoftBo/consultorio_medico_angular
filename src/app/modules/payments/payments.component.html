@@ -1,0 +1,36 @@
+<h2>Pagos</h2>
+
+<form (ngSubmit)="addPayment()" class="form">
+  <app-patient-selector (selected)="selectedPatient = $event"></app-patient-selector>
+  <input
+    type="number"
+    name="amount"
+    placeholder="Monto"
+    [(ngModel)]="newPayment.amount"
+    required
+  />
+  <button type="submit" class="primary">
+    {{ editingIndex !== null ? 'Guardar' : 'Registrar' }}
+  </button>
+  <button *ngIf="editingIndex !== null" type="button" (click)="cancelEdit()">Cancelar</button>
+</form>
+
+<table class="list" *ngIf="payments.length">
+  <thead>
+    <tr>
+      <th>Paciente</th>
+      <th>Monto</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of payments; let i = index">
+      <td>{{ p.patient }}</td>
+      <td>${{ p.amount }}</td>
+      <td>
+        <button (click)="editPayment(i)">Editar</button>
+        <button (click)="payments.splice(i,1)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

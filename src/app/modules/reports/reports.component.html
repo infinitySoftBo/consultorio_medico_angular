@@ -1,0 +1,59 @@
+<h2>Reportes</h2>
+
+<table class="table">
+  <tr *ngFor="let k of kpis">
+    <td>{{ k.label }}</td>
+    <td>{{ k.value }}</td>
+  </tr>
+</table>
+
+<div class="chart" *ngIf="kpis.length">
+  <div
+    class="bar"
+    *ngFor="let k of kpis"
+    [style.height.%]="(k.value / maxValue) * 100"
+    [title]="k.label + ': ' + k.value"
+  >
+    {{ k.value }}
+  </div>
+</div>
+
+<h3>Pacientes</h3>
+<table class="table" *ngIf="patients.length">
+  <thead>
+    <tr><th>Nombre</th><th>Edad</th></tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of patients">
+      <td>{{ p.name }}</td>
+      <td>{{ p.age }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Citas</h3>
+<table class="table" *ngIf="appointments.length">
+  <thead>
+    <tr><th>Fecha</th><th>Hora</th><th>Paciente</th></tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of appointments">
+      <td>{{ a.date }}</td>
+      <td>{{ a.time }}</td>
+      <td>{{ a.patient }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Inventario</h3>
+<table class="table" *ngIf="inventory.length">
+  <thead>
+    <tr><th>Nombre</th><th>Cantidad</th></tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of inventory">
+      <td>{{ i.name }}</td>
+      <td>{{ i.qty }}</td>
+    </tr>
+  </tbody>
+</table>
