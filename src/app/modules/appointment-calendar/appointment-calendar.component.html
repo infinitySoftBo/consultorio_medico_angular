@@ -1,13 +1,7 @@
 <h2>Agenda Médica</h2>
 
 <form (ngSubmit)="addAppointment()" class="form">
-  <input
-    type="text"
-    name="patient"
-    placeholder="Paciente"
-    [(ngModel)]="newAppointment.patient"
-    required
-  />
+  <app-patient-selector (select)="onPatientSelected($event)"></app-patient-selector>
   <input
     type="date"
     name="date"

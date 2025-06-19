@@ -1,23 +1,30 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DataService, Appointment } from '../../services/data.service';
+import { DataService, Appointment, Patient } from '../../services/data.service';
+import { PatientSelectorComponent } from '../../shared/patient-selector.component';
 
 @Component({
   selector: 'app-appointment-calendar',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PatientSelectorComponent],
   templateUrl: './appointment-calendar.component.html',
   styleUrl: './appointment-calendar.component.css'
 })
 export class AppointmentCalendarComponent {
   newAppointment: Appointment = { patient: '', date: '', time: '' };
   editingIndex: number | null = null;
+  selectedPatient: Patient | null = null;
 
   currentMonth = new Date();
   selectedDate: string | null = null;
 
   constructor(public data: DataService) {}
+
+  onPatientSelected(patient: Patient) {
+    this.selectedPatient = patient;
+    this.newAppointment.patient = patient.name;
+  }
 
   get appointments() {
     return this.data.appointments;

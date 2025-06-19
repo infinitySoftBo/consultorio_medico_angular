@@ -3,6 +3,13 @@
 <form (ngSubmit)="addPatient()" class="form">
   <input
     type="text"
+    name="id"
+    placeholder="ID"
+    [(ngModel)]="newPatient.id"
+    required
+  />
+  <input
+    type="text"
     name="name"
     placeholder="Nombre"
     [(ngModel)]="newPatient.name"
@@ -34,6 +41,7 @@
 <table class="list" *ngIf="patients.length">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Nombre</th>
       <th>Edad</th>
       <th>Teléfono</th>
@@ -43,6 +51,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let p of patients; let i = index">
+      <td>{{ p.id }}</td>
       <td>{{ p.name }}</td>
       <td>{{ p.age }}</td>
       <td>{{ p.phone }}</td>

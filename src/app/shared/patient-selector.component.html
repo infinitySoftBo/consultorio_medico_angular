@@ -1,0 +1,8 @@
+<div class="patient-selector">
+  <input type="text" [(ngModel)]="query" (input)="onInput()" [placeholder]="placeholder" />
+  <ul class="suggestions" *ngIf="suggestions.length">
+    <li *ngFor="let p of suggestions" (click)="choose(p)">
+      {{ p.name }} ({{ p.id }})
+    </li>
+  </ul>
+</div>
