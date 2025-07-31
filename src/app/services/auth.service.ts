@@ -8,9 +8,23 @@ export class AuthService {
     return this._loggedIn;
   }
 
-  login(username: string, password: string) {
-    // simple demo login
-    this._loggedIn = true;
+  /**
+   * Attempt to log in with the provided credentials.
+   * For now it simply checks against a hard coded list of demo users.
+   * Returns true on success and false otherwise.
+   */
+  login(username: string, password: string): boolean {
+    const validUsers = [
+      { username: 'admin', password: 'admin' },
+      { username: 'doctor', password: 'demo' },
+    ];
+
+    const match = validUsers.find(
+      u => u.username === username && u.password === password
+    );
+
+    this._loggedIn = !!match;
+    return this._loggedIn;
   }
 
   logout() {

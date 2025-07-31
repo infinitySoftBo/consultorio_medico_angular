@@ -12,8 +12,13 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   title = 'medico';
+  menuOpen = true;
 
   constructor(public auth: AuthService) {}
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
 
   logout() {
     this.auth.logout();
