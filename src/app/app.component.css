@@ -19,6 +19,15 @@
   z-index: 10;
 }
 
+.menu-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-right: auto;
+}
+
 .login-link {
   color: #fff;
   text-decoration: none;

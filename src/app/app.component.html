@@ -1,9 +1,10 @@
 <header class="header">
+  <button *ngIf="auth.isLoggedIn" class="menu-btn" (click)="toggleMenu()">&#9776;</button>
   <a *ngIf="!auth.isLoggedIn" routerLink="/login" class="login-link">Login</a>
   <a *ngIf="auth.isLoggedIn" (click)="logout()" class="login-link">Logout</a>
 </header>
 
-<nav class="sidebar" *ngIf="auth.isLoggedIn">
+<nav class="sidebar" *ngIf="auth.isLoggedIn && menuOpen">
   <h1>Consultorio</h1>
   <ul>
     <li><a routerLink="/patients" routerLinkActive="active">Pacientes</a></li>

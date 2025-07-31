@@ -13,12 +13,22 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
   credentials = { username: '', password: '' };
+  error = '';
 
   constructor(private auth: AuthService, private router: Router) {}
 
   login() {
-    this.auth.login(this.credentials.username, this.credentials.password);
-    this.credentials = { username: '', password: '' };
-    this.router.navigate(['/patients']);
+    const ok = this.auth.login(
+      this.credentials.username,
+      this.credentials.password
+    );
+
+    if (ok) {
+      this.credentials = { username: '', password: '' };
+      this.error = '';
+      this.router.navigate(['/patients']);
+    } else {
+      this.error = 'Credenciales inválidas';
+    }
   }
 }
